@@ -1,14 +1,14 @@
-import { config } from "dotenv";
-import express from "express";
-import mongoose, { connect as mongoConnect } from "mongoose";
-import cors from "cors";
-
-import Todo from "../models/Todo";
+const { config } = require("dotenv");
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const Todo = require("../models/Todo.js");
 
 config();
 
 mongoose.set("strictQuery", true);
-mongoConnect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("db connected"))
   .catch((err) => console.log(err.message));
 
